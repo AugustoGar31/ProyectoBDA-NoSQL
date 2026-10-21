@@ -1,12 +1,28 @@
 from pymongo import MongoClient
 from faker import Faker
+from dotenv import load_dotenv
 import random
+import os
 
-# Conexión a MongoDB con tus credenciales configuradas
+load_dotenv()
+
+mongo_username = os.environ.get("MONGO_ROOT_USERNAME")
+mongo_password = os.environ.get("MONGO_ROOT_PASSWORD")
+mongo_host = os.environ.get("MONGO_HOST", "localhost")
+mongo_port = os.environ.get("MONGO_PORT", "27018")
+database_name = os.environ.get("MONGO_DATABASE", "nexosql_db")
+
+if not mongo_username or not mongo_password:
+    raise RuntimeError(
+        "Faltan MONGO_ROOT_USERNAME y MONGO_ROOT_PASSWORD. "
+        "Configúralas en .env o en las variables de entorno."
+    )
+
 client = MongoClient(
-    "mongodb://augusto:password123@localhost:27018/?authSource=admin"
+    f"mongodb://{mongo_username}:{mongo_password}@{mongo_host}:{mongo_port}/"
+    "?authSource=admin"
 )
-db = client["nexosql_db"]
+db = client[database_name]
 
 # Limpiar colecciones previas para garantizar reproducibilidad
 db.modulos_sql.drop()
