@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_nexosql
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./mongo_data:/data/db
+    # Las credenciales de ejemplo (no usar en producción)
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: augusto
+      MONGO_INITDB_ROOT_PASSWORD: password123
