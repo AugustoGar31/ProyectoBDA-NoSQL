@@ -6,8 +6,8 @@ import os
 
 load_dotenv()
 
-mongo_username = os.environ.get("MONGO_ROOT_USERNAME")
-mongo_password = os.environ.get("MONGO_ROOT_PASSWORD")
+mongo_username = os.getenv("MONGO_USER", os.getenv("MONGO_ROOT_USERNAME", "augusto"))
+mongo_password = os.getenv("MONGO_PASS", os.getenv("MONGO_ROOT_PASSWORD", "password123"))
 mongo_host = os.environ.get("MONGO_HOST", "localhost")
 mongo_port = os.environ.get("MONGO_PORT", "27018")
 database_name = os.environ.get("MONGO_DATABASE", "nexosql_db")

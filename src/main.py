@@ -105,3 +105,4 @@ def inscribir_estudiante(modulo_id: str, usuario_id: str):
 # uvicorn src.main:app --reload
 # http://127.0.0.1:8000/docs
 # python -c "from pymongo import MongoClient; c=MongoClient('mongodb://augusto:password123@localhost:27018/?authSource=admin'); print(c.nexosql_db.usuarios.find_one()['_id'])"
+# docker compose logs -f api
