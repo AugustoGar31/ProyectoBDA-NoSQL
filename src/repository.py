@@ -1,11 +1,15 @@
+import os
 from pymongo import MongoClient, ReturnDocument
 from bson import ObjectId
 from bson.errors import InvalidId
 from typing import Optional, List, Dict, Any
 
 class ModuloRepository:
-    def __init__(self, uri: str = "mongodb://augusto:password123@localhost:27018/?authSource=admin"):
-        self.client = MongoClient(uri)
+    def __init__(self, uri: Optional[str] = None):
+        # Toma la URI de Docker si existe, o usa localhost:27018 por defecto para pruebas locales
+        default_uri = "mongodb://augusto:password123@localhost:27018/?authSource=admin"
+        self.uri = uri or os.getenv("MONGO_URI", default_uri)
+        self.client = MongoClient(self.uri)
         self.db = self.client["nexosql_db"]
         self.collection = self.db["modulos_sql"]
         self.usuarios = self.db["usuarios"]

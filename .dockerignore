@@ -1,0 +1,10 @@
+src/seed.py
+__pycache__/
+*.py[cod]
+.git/
+.venv/
+venv/
+mongo_data/
+mongo_data_backup_*/
+*.ipynb
+*.pdf
