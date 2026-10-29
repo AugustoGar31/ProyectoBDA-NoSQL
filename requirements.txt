@@ -1,3 +1,6 @@
 Faker
 pymongo
 python-dotenv
+fastapi
+uvicorn
+pydantic

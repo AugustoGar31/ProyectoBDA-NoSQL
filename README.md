@@ -55,7 +55,7 @@ docker compose up -d
 Poblar la base:
 
 ```powershell
-python seed.py
+python src\seed.py
 ```
 
 El script elimina y vuelve a crear las colecciones `modulos_sql`, `usuarios`
@@ -71,6 +71,14 @@ Para detener el contenedor:
 docker compose down
 ```
 
+Para iniciar la API:
+
+```powershell
+uvicorn src.main:app --reload
+```
+
+La documentación interactiva queda disponible en `http://127.0.0.1:8000/docs`.
+
 Los datos locales se guardan en `mongo_data/`, que no se versiona en Git.
 
 ## Comandos útiles
@@ -84,10 +92,23 @@ docker compose logs -f mongodb
 
 ```text
 .
+├── src/
+│   ├── main.py
+│   ├── repository.py
+│   └── seed.py
+├── notebooks/
+│   ├── analisis.ipynb
+│   └── consultas.ipynb
+├── docs/
+│   ├── consigna/
+│   │   └── Consigna_Proyecto_NoSQL_MongoDB.pdf
+│   ├── entregas/
+│   │   ├── entrega_proyecto_NoSQL_1.md
+│   │   ├── entrega_proyecto_NoSQL_2.md
+│   │   └── entrega_proyecto_NoSQL_3.md
+│   └── relacional_vs_documental.md
 ├── docker-compose.yml
-├── seed.py
 ├── requirements.txt
 ├── .env.example
-├── Consigna_Proyecto_NoSQL_MongoDB.pdf
 └── README.md
 ```
